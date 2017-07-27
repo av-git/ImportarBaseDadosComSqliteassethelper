@@ -1,4 +1,4 @@
-package br.com.viperfish.importarbasedadoscomsqliteassethelper;
+package br.com.viperfish.importarbasedadoscomsqliteassethelper.marca;
 
 /**
  * Created by ddark on 20/07/17.
