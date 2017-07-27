@@ -2,6 +2,7 @@ package br.com.viperfish.importarbasedadoscomsqliteassethelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -113,4 +114,14 @@ public abstract class DaoBase {
 
         return resultado > 0;
     }
+
+    /**
+     *
+     * Transforma um {@link Cursor} em uma objeto entidade
+     *
+     * @param cursor
+     * @param <T>
+     * @return Objeto
+     */
+    protected abstract <T> T transformaCursorEmEntidade(Cursor cursor);
 }

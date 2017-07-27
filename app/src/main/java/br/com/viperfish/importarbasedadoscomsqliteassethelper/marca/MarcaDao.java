@@ -52,7 +52,7 @@ public class MarcaDao extends DaoBase {
         values.put(IMarcaSchema.COLUNA_NOME,
                 marca.getNome());
 
-        return inserir(IMarcaSchema.TABELA, values);
+        return super.inserir(IMarcaSchema.TABELA, values);
     }
 
     public List<Marca> buscarTodos() {
@@ -121,7 +121,7 @@ public class MarcaDao extends DaoBase {
         values.put(IMarcaSchema.COLUNA_NOME,
                 marca.getNome());
 
-        boolean atualizou = atualizar(IMarcaSchema.TABELA,
+        boolean atualizou = super.atualizar(IMarcaSchema.TABELA,
                 values, IMarcaSchema.COLUNA_ID + " = ?",
                 new String[]{marca.getId().toString()});
 
@@ -135,11 +135,11 @@ public class MarcaDao extends DaoBase {
      */
     public boolean deletar(Marca marca) {
 
-        return deletar(IMarcaSchema.TABELA, IMarcaSchema.COLUNA_ID + " = ?", new String[]{marca.getId().toString()});
+        return super.deletar(IMarcaSchema.TABELA, IMarcaSchema.COLUNA_ID + " = ?", new String[]{marca.getId().toString()});
 
     }
 
-    private Marca transformaCursorEmEntidade(Cursor cursor) {
+    protected Marca transformaCursorEmEntidade(Cursor cursor) {
 
         Marca marca = new Marca(
 
