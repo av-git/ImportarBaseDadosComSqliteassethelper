@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +44,6 @@ public class MarcaDao extends DaoBase {
 
     /**
      * Insert a contact into the database.
-     *
      */
     public boolean inserir(Marca marca) {
 
@@ -86,7 +86,6 @@ public class MarcaDao extends DaoBase {
     }
 
     /**
-     *
      * Forma alternativa
      * Read all contacts from the database.
      *
@@ -112,7 +111,6 @@ public class MarcaDao extends DaoBase {
 
     /**
      * Update the contact details.
-     *
      */
     public boolean atualizar(Marca marca) {
 
@@ -149,6 +147,37 @@ public class MarcaDao extends DaoBase {
                 cursor.getString(cursor.getColumnIndex(
                         IMarcaSchema.COLUNA_NOME))
         );
+
+        return marca;
+    }
+
+    public Marca buscarPorId(Integer id) {
+
+        Marca marca = null;
+        Cursor cursor = null;
+
+        try {
+
+            abrirConexaoEmModoLeitura();
+
+            cursor = getDatabase().query(IMarcaSchema.TABELA,
+                    IMarcaSchema.COLUNAS,
+                    IMarcaSchema.COLUNA_ID + " = ?",
+                    new String[]{id.toString()},
+                    null, null, null);
+
+            if (cursor.moveToNext()) {
+                marca = transformaCursorEmEntidade(cursor);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.i(TAG, "ERRO Buscar Marca");
+
+        } finally {
+            cursor.close();
+            fecharConexao();
+        }
 
         return marca;
     }
